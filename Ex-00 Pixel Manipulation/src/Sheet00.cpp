@@ -24,8 +24,8 @@ void display(const char* windowTitle, Mat& img) {
 	namedWindow(windowTitle, WINDOW_AUTOSIZE);
 	imshow(windowTitle, img);
 	waitKey(0);
-//	string file = "images/" +  string(windowTitle) + ".jpeg";
-//	imwrite( file, img );
+	string file = "images/" +  string(windowTitle) + ".png";
+	imwrite( file, img );
 }
 
 void convertToGrayImg(Mat& img, Mat& result) {
