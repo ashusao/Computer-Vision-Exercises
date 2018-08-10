@@ -8,7 +8,7 @@ Subtracted Image                              | Pixel WiseSubtracted Image
 :--------------------------------------------:| :------------------------------:
 ![alt text](./images/c.png "Subtracted Image")| ![alt text](./images/d.png "PixWise")
 
-Patch                                         | After Random copying
+Random Patch                                  | Copying Patch
 :--------------------------------------------:| :------------------------------:
 ![alt text](./images/e_1.png "Patch Image")   | ![alt text](./images/e_2.png "Random Copy")
 
