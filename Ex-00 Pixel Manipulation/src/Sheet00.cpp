@@ -53,20 +53,20 @@ void pixelwiseSubtraction(Mat& bgrImg, Mat& grayImg, Mat& result) {
 	int ncols = bgrImg.cols * channels;
 
 	// if continous make it one complete row
-	if(bgrImg.isContinuous()){
+	if (bgrImg.isContinuous()) {
 		ncols = ncols * nrows;
 		nrows = 1;
 	}
 
 	bgrImg.copyTo(result);
 
-	for(int i=0; i<nrows; i++){
-		uchar *p = result.ptr<uchar>(i);	//take pointer to first element in row from result Mat
-		uchar *q = grayImg.ptr<uchar>(i);	// take pointer to first Element in row from grayscale image
-		for(int j=0,k=0 ; j<ncols; j++){
-			if(j%3 == 0)					// increment grayscale pointer once after bgr pointer is incremented thrice
+	for (int i = 0; i < nrows; i++) {
+		uchar *p = result.ptr<uchar>(i);//take pointer to first element in row from result Mat
+		uchar *q = grayImg.ptr<uchar>(i);// take pointer to first Element in row from grayscale image
+		for (int j = 0, k = 0; j < ncols; j++) {
+			if (j % 3 == 0)	// increment grayscale pointer once after bgr pointer is incremented thrice
 				k++;
-			p[j] = max(p[j] - 0.5 * q[k] , 0.0);
+			p[j] = max(p[j] - 0.5 * q[k], 0.0);
 		}
 	}
 
@@ -75,7 +75,7 @@ void pixelwiseSubtraction(Mat& bgrImg, Mat& grayImg, Mat& result) {
 void extractPatch(Mat& img, Mat& result) {
 	//TODO: implement your solution here
 	int pSize = 16;
-	Rect ROI(img.cols/2 - pSize/2, img.rows/2 - pSize/2, pSize, pSize);
+	Rect ROI(img.cols / 2 - pSize / 2, img.rows / 2 - pSize / 2, pSize, pSize);
 	Mat patch = img(ROI);
 	patch.copyTo(result);
 
@@ -100,25 +100,24 @@ void drawRandomRectanglesAndEllipses(Mat& img) {
 
 	int maxSize = 50;
 
-	for(int i=0; i<10; i++){
-		Point pt1(rng.uniform(0, img.cols - maxSize), rng.uniform(0, img.rows - maxSize));
-		Point pt2(rng.uniform(0, img.cols - maxSize), rng.uniform(0, img.rows -maxSize));
-		Scalar col1 = Scalar(rng.uniform(0,255), rng.uniform(0, 255), rng.uniform(0, 255));
+	for (int i = 0; i < 10; i++) {
+		Point pt1(rng.uniform(0, img.cols - maxSize),
+				rng.uniform(0, img.rows - maxSize));
+		Point pt2(rng.uniform(0, img.cols - maxSize),
+				rng.uniform(0, img.rows - maxSize));
+		Scalar col1 = Scalar(rng.uniform(0, 255), rng.uniform(0, 255),
+				rng.uniform(0, 255));
 
 		rectangle(img, pt1, pt2, col1, 2);
 
-		Point center(rng.uniform(0, img.cols - maxSize), rng.uniform(0, img.rows - maxSize));
+		Point center(rng.uniform(0, img.cols - maxSize),
+				rng.uniform(0, img.rows - maxSize));
 		Size sz(rng.uniform(0, maxSize), rng.uniform(0, maxSize));
 		double angle = rng.uniform(0, 360);
 
 		ellipse(img, center, sz, angle, 0, 360, col1, 2);
 
-}
-
-
-	Point pt1(rng.uniform(0, img.cols), rng.uniform(0, img.rows));
-	Point pt2(rng.uniform(0, img.cols), rng.uniform(0, img.rows));
-
+	}
 
 }
 
